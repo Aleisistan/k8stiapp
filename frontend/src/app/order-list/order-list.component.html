@@ -1,0 +1,37 @@
+<p></p>
+<h2>Listado de Ordendasdasdaes en desdasrrollo</h2>
+<div class="container-fluid mt-5">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Prioridad</th>
+        <th scope="col">descripción</th>
+        <th scope="col">descripción2</th>
+        <th scope="col">Estado</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{order.id}}</td>
+        <td>{{order.name}}</td>
+        <td class="resaltado">{{order.priority}}</td>
+        <td>{{order.description}}</td>
+        <td>{{order.description2}}</td>
+        <td><label for="Prioridad" class="form-label"></label>
+          <select class="form-select" id="Estado">
+            <option selected>Selecciona el Estado de la Orden</option>
+            <option value="1">En Espera</option>
+            <option value="2">En Proceso</option>
+            <option value="3">Realizada</option>
+          </select>
+        <td><button type="button" class="btn btn-secondary" (click)="UpdateOrder(order.id)">Actualizar Orden</button>
+        </td>
+        <td><button type="button" class="btn btn-danger" (click)="borrar(order.id)">Eliminar Orden</button> </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

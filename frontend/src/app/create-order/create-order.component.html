@@ -1,0 +1,77 @@
+<p></p>
+<h1>Crear Orden</h1>
+<div class="container-fluid mt-5">
+  <div class="col-6 ">
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+    {{ errorMessage }}
+  </div>
+  </div>
+  
+</div>
+<h2>Seleccionar Usuario</h2>
+<div class="container-fluid mt-5">
+  <div class="col-3 ">
+    <div class="btn-group d-flex" role="group" aria-label="Acciones de usuario">
+      <button class="btn btn-secondary nav justify-content-center" [routerLink]="['/createUsers']">Si no tienes Usuario
+        Crea uno nuevo</button>
+    </div>
+  </div>
+  <div class="col-6 ">
+  <div *ngIf="mostrarAdvertencia" class="alert alert-danger mt-3">
+    Por favor, selecciona una prioridad antes de crear la orden.
+  </div>
+  </div>
+  <div *ngIf="mostrarBotonIrHome" class="col-6">
+    <button (click)="irAHomeParaPrioridad()" class="btn btn-warning">Seleccionar Prioridad</button>
+  </div>
+  <form (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <div class="col-6 ">
+      <label for="userId" class="form-label">Selecciona tu Id de Usuario</label>
+      <select id="userId" class="form-select" [(ngModel)]="selectedUserId" name="userId">
+        <option value="" disabled [routerLink]="['/users']"></option>
+        <option *ngFor="let user of users" [value]="user.id">{{ user.id }}</option>
+      </select>
+    </div>
+    </div>
+    <div class="mb-3">
+      <div class="col-6 ">
+      <label for="userId" class="form-label">Indica tu Nombre</label>
+      <select id="name" class="form-select" [(ngModel)]="username" name="name">
+        <option value="" disabled [routerLink]="['/users']"></option>
+        <option *ngFor="let user of users" [value]="user.name">{{ user.name }}</option>
+      </select>
+    </div>
+  
+     <div class="mb-3">
+      <diV class="col-6">
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Descripción" id="floatingTextarea" [(ngModel)]="description"
+            name="description"></textarea>
+          <label for="floatingTextarea">Descripción</label>
+        </div>
+      </diV>
+    </div>
+    
+    <div class="mb-3">
+    <div class="col-6">
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Descripción" id="floatingTextarea" [(ngModel)]="description2"
+            name="description"></textarea>
+          <label for="floatingTextarea">Descripción2</label>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="col-6">
+        <div class="mb-3">
+   
+        <div class="btn-group w-75" role="group" aria-label="Basic example">
+          <button type="submit" class="btn btn-primary w-75">Crear Orden</button>
+        </div>
+      </div>
+    </div>
+        
+  </form>
+ 
+</div>

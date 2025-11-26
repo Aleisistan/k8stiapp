@@ -1,0 +1,73 @@
+<h1>{{ title }}</h1>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-4">
+      <img src="assets/monitor.jpeg" width="180" height="0190">
+      <img src="assets/soporte.jpg" width="180" height="190">
+    </div>
+    <div class="col-4">
+      <h2>Sistema de turnos del Servicio Técnico de Informática</h2>
+
+    </div>
+    <div class="col-4 text-right">
+      <img src="assets/conicet tandil sti.jpg" width="180" height="190" class="img-right">
+    </div>
+    <div class="col-6" class=" fondo">
+      <ul class="nav justify-content-center">
+        <li class="nav-item ">
+          <a class="nav-link text-primary active " [routerLink]="['/home']" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-primary" [routerLink]="['/createOrders']" routerLinkActive="active">Create Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-primary" [routerLink]="['/createUsers']" routerLinkActive="active">Create Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-primary" [routerLink]="['/users']" routerLinkActive="active">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-primary" [routerLink]="['/orders']" routerLinkActive="active">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-primary" [routerLink]="['/about']" routerLinkActive="active">About Us</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="container-fluid">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+          <p class="col-md-4 mb-0 text-body-secondary">© 2024 STI CCT </p>
+
+          <a href="/"
+            class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+              <use xlink:href="#bootstrap"></use>
+            </svg>
+          </a>
+
+          <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">News</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Services</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+          </ul>
+        </footer>
+      </div>
+
+
+    </div>
+  </div>
+</div>

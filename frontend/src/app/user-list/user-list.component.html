@@ -1,0 +1,31 @@
+<p></p>
+<h2>Seleccionar Usuario</h2>
+<div class="container-fluid mt-5">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Instituto</th>
+        <th scope="col">mail</th>
+        <th scope="col">celular</th>
+        <th scope="col" class="row justify-content-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td class="resaltado">{{user.institute}}</td>
+        <td>{{user.mail}}</td>
+        <td>{{user.cel ? user.cel : 'noceluser'}}</td>
+        <td><button type="button" class="btn btn-warning" (click)="CrearUser(user)">Modificar Usuario</button> </td>
+
+        <td><button type="button" class="btn btn-danger" (click)="borrar(user.id)"> Eliminar Usuario</button> </td>
+
+      </tr>
+    </tbody>
+  </table>
+
+ 

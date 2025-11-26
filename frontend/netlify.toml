@@ -1,0 +1,14 @@
+[build]
+  command = "ng build --configuration production"
+  publish = "dist/sti-cct/browser"
+
+[[redirects]]
+  from = "/api/*"  
+  to = "https://sticcttandil.netlify.app/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

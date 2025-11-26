@@ -1,0 +1,131 @@
+time="2025-09-11T18:15:19-03:00" level=warning msg="F:\\Ale\\TUARI\\2 do Año\\2do Cuatrimestre\\Operaciones de Desarrollo\\STI APP\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [frontend internal] load build definition from Dockerfile
+#1 transferring dockerfile: 408B 0.1s done
+#1 DONE 0.5s
+
+#2 [frontend internal] load metadata for docker.io/library/nginx:alpine
+#2 DONE 2.3s
+
+#3 [frontend internal] load metadata for docker.io/library/node:20-alpine
+#3 DONE 2.4s
+
+#4 [frontend internal] load .dockerignore
+#4 transferring context: 2B 0.0s done
+#4 DONE 0.3s
+
+#5 [frontend build 1/7] FROM docker.io/library/node:20-alpine@sha256:eabac870db94f7342d6c33560d6613f188bbcf4bbe1f4eb47d5e2a08e1a37722
+#5 DONE 0.0s
+
+#6 [frontend build 2/7] WORKDIR /app
+#6 CACHED
+
+#7 [frontend stage-1 1/2] FROM docker.io/library/nginx:alpine@sha256:42a516af16b852e33b7682d5ef8acbd5d13fe08fecadc7ed98605ba5e3b26ab8
+#7 CACHED
+
+#8 [frontend internal] load build context
+#8 transferring context: 406.19kB 4.7s
+#8 transferring context: 684.55kB 9.7s
+#8 transferring context: 953.76kB 14.8s
+#8 transferring context: 1.23MB 19.8s
+#8 transferring context: 1.52MB 24.9s
+#8 transferring context: 1.90MB 29.9s
+#8 transferring context: 2.17MB 34.7s done
+#8 DONE 35.0s
+
+#9 [frontend build 3/7] COPY package*.json ./
+#9 DONE 1.5s
+
+#10 [frontend build 4/7] RUN npm install
+#10 12.52 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+#10 14.56 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+#10 15.04 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+#10 34.20 
+#10 34.20 added 968 packages, and audited 969 packages in 30s
+#10 34.20 
+#10 34.20 149 packages are looking for funding
+#10 34.20   run `npm fund` for details
+#10 34.33 
+#10 34.33 15 vulnerabilities (6 low, 4 moderate, 5 high)
+#10 34.33 
+#10 34.33 To address issues that do not require attention, run:
+#10 34.33   npm audit fix
+#10 34.33 
+#10 34.33 To address all issues (including breaking changes), run:
+#10 34.33   npm audit fix --force
+#10 34.33 
+#10 34.33 Run `npm audit` for details.
+#10 34.33 npm notice
+#10 34.33 npm notice New major version of npm available! 10.8.2 -> 11.6.0
+#10 34.33 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.0
+#10 34.33 npm notice To update run: npm install -g npm@11.6.0
+#10 34.33 npm notice
+#10 DONE 50.1s
+
+#11 [frontend build 5/7] COPY . .
+#11 DONE 37.5s
+
+#12 [frontend build 6/7] RUN npm run build --prod
+#12 1.858 npm warn config production Use `--omit=dev` instead.
+#12 1.918 
+#12 1.918 > sticct@0.0.0 build
+#12 1.918 > ng build --configuration production
+#12 1.918 
+#12 3.120 ❯ Building...
+#12 13.49 { userId: 1, id: 1, title: 'delectus aut autem', completed: false }
+#12 14.73 { userId: 1, id: 1, title: 'delectus aut autem', completed: false }
+#12 14.78 { userId: 1, id: 1, title: 'delectus aut autem', completed: false }
+#12 14.87 { userId: 1, id: 1, title: 'delectus aut autem', completed: false }
+#12 14.98 { userId: 1, id: 1, title: 'delectus aut autem', completed: false }
+#12 15.01 { userId: 1, id: 1, title: 'delectus aut autem', completed: false }
+#12 15.07 { userId: 1, id: 1, title: 'delectus aut autem', completed: false }
+#12 15.08 ✔ Building...
+#12 15.10 Browser bundles        
+#12 15.10 Initial chunk files     | Names               |  Raw size | Estimated transfer size
+#12 15.10 main-OKGH3CKU.js        | main                | 386.95 kB |               101.03 kB
+#12 15.10 polyfills-SCHOHYNV.js   | polyfills           |  34.52 kB |                11.29 kB
+#12 15.10 styles-5INURTSO.css     | styles              |   0 bytes |                 0 bytes
+#12 15.10 
+#12 15.10                         | Initial total       | 421.47 kB |               112.32 kB
+#12 15.10 
+#12 15.10 
+#12 15.10 Server bundles         
+#12 15.10 Initial chunk files     | Names               |  Raw size
+#12 15.10 server.mjs              | server              |   1.11 MB |                        
+#12 15.10 chunk-SRP23RUI.mjs      | -                   | 655.95 kB |                        
+#12 15.10 polyfills.server.mjs    | polyfills.server    | 268.61 kB |                        
+#12 15.10 chunk-2QIGNKPD.mjs      | -                   |  54.53 kB |                        
+#12 15.10 chunk-5XUXGTUW.mjs      | -                   |   2.55 kB |                        
+#12 15.10 render-utils.server.mjs | render-utils.server |   1.47 kB |                        
+#12 15.10 main.server.mjs         | main.server         | 149 bytes |                        
+#12 15.10 
+#12 15.10 Lazy chunk files        | Names               |  Raw size
+#12 15.10 chunk-7YC4RJ5P.mjs      | xhr2                |  12.08 kB |                        
+#12 15.10 
+#12 15.10 Prerendered 6 static routes.
+#12 15.10 Application bundle generation complete. [11.963 seconds]
+#12 15.10 
+#12 15.14 Output location: /app/dist/sti-cct
+#12 15.14 
+#12 DONE 16.5s
+
+#13 [frontend build 7/7] RUN ls -la /app/dist #lista el contenido de /dist para debug
+#13 1.848 total 24
+#13 1.848 drwxr-xr-x    1 root     root          4096 Sep  3 18:02 .
+#13 1.848 drwxr-xr-x    1 root     root          4096 Sep 11 21:15 ..
+#13 1.848 drwxr-xr-x    1 root     root          4096 Sep 11 21:17 sti-cct
+#13 DONE 2.8s
+
+#14 [frontend stage-1 2/2] COPY --from=build /app/dist/sti-cct/browser/ /usr/share/nginx/html
+#14 DONE 2.1s
+
+#15 [frontend] exporting to image
+#15 exporting layers
+#15 exporting layers 1.0s done
+#15 writing image sha256:cfeada28ba0808c152489507b67b0c77decc4055e706431e7d68bf6a593ee88c 0.1s done
+#15 naming to docker.io/library/sticct-frontend-angular 0.1s done
+#15 DONE 1.6s
+
+#16 [frontend] resolving provenance for metadata file
+#16 DONE 0.0s

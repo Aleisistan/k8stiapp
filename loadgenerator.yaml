@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: load-generator
+  labels:
+    app: load-generator
+spec:
+  containers:
+  - name: load-generator
+    image: busybox
+    # Usamos IfNotPresent para que no tarde descargando busybox si ya la tienes
+    imagePullPolicy: IfNotPresent
+    command: ["/bin/sh", "-c"] # Forzamos el uso de shell explícito
+    args:
+    - |
+      echo "Iniciando ataque de tráfico..."
+      while true; do
+        # El '|| true' evita que el script muera si falla la conexión
+        wget -q -O- http://backend-service:3000 || true
+        # Una pausa minúscula para no ahogar al propio generador
+        sleep 0.01
+      done
+    restartPolicy: Never # Importante para pruebas manuales
+    resources:
+      requests:
+        cpu: 50m
+        memory: 32Mi
+  restartPolicy: Always
