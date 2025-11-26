@@ -139,7 +139,7 @@ spec:
         image: mi-frontend:v1 # Tu imagen local
         imagePullPolicy: Never
         ports:
-        - containerPort: 80 # Asumo que tu frontend sirve en puerto 80 (nginx)
+        - containerPort: 4200 # Asumo que tu frontend sirve en puerto 4200 (nginx)
 ---
 apiVersion: v1
 kind: Service
@@ -150,8 +150,8 @@ spec:
     app: frontend
   ports:
     - protocol: TCP
-      port: 80        # Puerto accesible en localhost:80
-      targetPort: 80
+      port: 4200        # Puerto accesible en localhost:4200
+      targetPort: 4200
   type: LoadBalancer
 ---
 # --- 5. ADMINER (Para ver la DB) ---

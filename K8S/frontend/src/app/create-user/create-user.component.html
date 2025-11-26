@@ -1,0 +1,63 @@
+<p></p>
+<div class="container-fluid mt-3">
+  <div class="row justify-content-center">
+    <div class="col-12 text-center">
+      <h1>Crear Usuario</h1>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt-3">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-6">
+      <div class="card p-4 shadow-sm">
+        <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+          {{ errorMessage }}
+        </div>
+        <form (ngSubmit)="onSubmit()">
+
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text">Nombre y Apellido (*)</span>
+              <input type="text" id="name" class="form-control" [(ngModel)]="name" name="name" required placeholder="">
+
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="instituto" class="form-label">Instituto (*)</label>
+            <select class="form-select" id="institute" [(ngModel)]="institute" name="institute">
+              <option selected disable>Selecciona un instituto</option>
+              <option>CIFICEN Tandil</option>
+              <option>CIFICEN Olavarría</option>
+              <option>CIVETAN</option>
+              <option>CCT</option>
+              <option>IGEHCS</option>
+              <option>INCUAPA</option>
+              <option>IHLLA Azul</option>
+              <option>IHLLA Tandil</option>
+              <option>ISISTAN</option>
+              <option>Otros</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico (*) </label>
+            <input type="email" class="form-control" id="mail" [(ngModel)]="mail" name="mail"
+              placeholder="correo@ejemplo.com">
+          </div>
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text">Celular </span>
+              <input type="text" aria-label="Numero" class="form-control" id="cel" [(ngModel)]="cel" name="cel"
+                placeholder="Opcional">
+            </div>
+
+            <div class="mb-3"></div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary btn-lg"> Crear Usuario</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

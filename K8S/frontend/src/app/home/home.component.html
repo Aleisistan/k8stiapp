@@ -1,0 +1,83 @@
+<p></p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="container px-2 py-2" id="hanging-icons">
+                <p>Para poder crear una Orden indica la prioridad de tu requerimiento primero.</p>
+                <h3 class="nav justify-content-left border-bottom"> Descripción de Prioridades en desarrollo</h3>
+
+                <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                    <div class="col d-flex align-items-start">
+                        <div
+                            class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                        </div>
+                        <div>
+                            <h3 class="fs-2 text-body-normal">Alta</h3>
+                            <p>Problemas al encender equipos, caída de sistemas y redes. Problemas de Seguridad.
+                                Servicio dentro de
+                                las 48hs</p>
+                            <a class="btn btn-danger" [routerLink]="['/createOrders']" (click)="setHighPriority()">
+                                Crear Orden
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-start">
+                        <div
+                            class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                        </div>
+                        <div>
+                            <h3 class="fs-2 text-body-emphasis">Intermedia desarrollo</h3>
+                            <p>Problemas de Virus, Malwares, Adywares. Instalación de Software y Hardware. Servicio
+                                dentro de las
+                                96hs</p>
+                            <a class="btn btn-warning" [routerLink]="['/createOrders']"
+                                (click)="setIntermediatePriority()">
+                                Crear Orden
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-start">
+                        <div
+                            class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                        </div>
+                        <div>
+                            <h3 class="fs-2 text-body-emphasis">Planeada</h3>
+                            <p>Armado de redes. Instalación de software o Hardware muy específicos. Optimización de
+                                sistemas
+                                operativos. Luego de 5 días hábiles</p>
+                            <a class="btn btn-secondary" [routerLink]="['/createOrders']"
+                                (click)="setPlannedPriority()">
+                                Crear Orden
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-start">
+                        <div
+                            class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                        </div>
+                        <div>
+                            <h4 class="fs-2 text-body-emphasis">Preventiva</h4>
+                            <p>Limpieza física de equipos. Backups. Virtualización. Luego de 7 días hábiles</p>
+                            <a class="btn btn-primary" [routerLink]="['/createOrders']"
+                                (click)="setPreventivePriority()">
+                                Crear Orden
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-start">
+                        <div
+                            class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                        </div>
+                        <div>
+                            <h4 class="fs-2 text-body-emphasis">STAN</h4>
+                            <p>Servicio Tecnológico de Alto Nivel: Asistencia Congresos, Asesorías, Consultorías</p>
+                            <a class="btn btn-success" [routerLink]="['/createOrders']" (click)="setStanPriority()">
+                                Crear Orden
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
