@@ -60,7 +60,8 @@ kind: Deployment
 metadata:
   name: backend
 spec:
-  # replicas: 3  # <--- AQUÍ ESTÁN TUS 3 PODS PARA PROBAR ESCALADO
+  # replicas: 3  #ESTÁ comentado porque: Argo CD leía replicas: 3 en el Git y forzaba a que fueran 3. El HPA intentaba subir a 10. 
+  # Argo CD veia el cambio y lo vuelvía a bajar a 3 y no se veía el escalado.
   selector:
     matchLabels:
       app: backend
@@ -78,7 +79,7 @@ spec:
             cpu: "100m"   # "Resérvame al menos 0.1 cpu" (Necesario para HPA)
             memory: "64Mi"
           limits:
-            cpu: "200m"   # "No dejes que use más de 0.5 cpu"
+            cpu: "200m"   # "No dejes que use más de 0.2 cpu"
             memory: "128Mi"
         ports:
         - containerPort: 3000 # El puerto interno de tu Node/Python/Java
@@ -138,7 +139,7 @@ spec:
         image: mi-frontend:v1 # Tu imagen local
         imagePullPolicy: Never
         ports:
-        - containerPort: 80 # Asumo que tu frontend sirve en puerto 80 (nginx)
+        - containerPort: 4432 # Asumo que tu frontend sirve en puerto 4432 (nginx)
 ---
 apiVersion: v1
 kind: Service
@@ -149,8 +150,8 @@ spec:
     app: frontend
   ports:
     - protocol: TCP
-      port: 80        # Puerto accesible en localhost:80
-      targetPort: 80
+      port: 4432        # Puerto accesible en localhost:4432
+      targetPort: 4432
   type: LoadBalancer
 ---
 # --- 5. ADMINER (Para ver la DB) ---
