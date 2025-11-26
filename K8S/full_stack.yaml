@@ -60,7 +60,7 @@ kind: Deployment
 metadata:
   name: backend
 spec:
-  replicas: 3  # <--- AQUÍ ESTÁN TUS 3 PODS PARA PROBAR ESCALADO
+  # replicas: 3  # <--- AQUÍ ESTÁN TUS 3 PODS PARA PROBAR ESCALADO
   selector:
     matchLabels:
       app: backend
