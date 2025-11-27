@@ -83,7 +83,7 @@ Docker Desktop no incluye métricas por defecto. Necesarias para que el Autoesca
 ```powershell
 kubectl apply -f [https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml](https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml)
 
-# 2. Aplicar parche de seguridad para Docker Desktop (Permite certificados inseguros locales)
+#### 2. Aplicar parche de seguridad para Docker Desktop (Permite certificados inseguros locales)
 kubectl patch -n kube-system deployment metrics-server --type=json -p "[{\"op\":\"add\",\"path\":\"/spec/template/spec/containers/0/args/-\",\"value\":\"--kubelet-insecure-tls\"}]"
 ```
 ---
@@ -95,10 +95,11 @@ Instalamos el controlador de Argo CD para que vigile nuestro repositorio.
 kubectl create namespace argocd
 kubectl apply -n argocd -f [https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml](https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml)
 
-# Esperar a que los pods inicien y abrir túnel de acceso (Puerto 8081) el 8080 esta ocupado con adminer
+#### Esperar a que los pods inicien y abrir túnel de acceso (Puerto 8081) el 8080 esta ocupado con adminer
+```powershell
 kubectl port-forward svc/argocd-server -n argocd 8081:443
-
-Credenciales de acceso:
+```
+#### Credenciales de acceso:
 
 URL: https://localhost:8081
 
@@ -108,7 +109,7 @@ Contraseña: Ejecutar el siguiente comando para desencriptarla:
 
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | % { [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_)) }
 
-## 4. Configurar la Aplicación en Argo CD
+### 4. Configurar la Aplicación en Argo CD
 Ir a + NEW APP.
 
 Source: Poner la URL de este repositorio github y path k8s.
@@ -118,32 +119,30 @@ Destination: Cluster https://kubernetes.default.svc y namespace default.
 Sync Policy: Automatic (Self Heal + Prune).
 
 
-## 🔥 Pruebas de Estrés y Autoescalado (HPA)
+### 🔥 Pruebas de Estrés y Autoescalado (HPA)
 
 Para verificar que el sistema escala de 1 a 10 pods, incluimos un archivo de generación de carga.
 
-**1. Activar Monitorización:**
+#### 1. Activar Monitorización:
 Abre una terminal nueva y déjala corriendo para ver los cambios en vivo:
 ```powershell
 kubectl get hpa -w
+```
+#### 2. Iniciar el Ataque: Desplegamos el pod generador de carga usando el archivo incluido en el repositorio:
 
-2. Iniciar el Ataque: Desplegamos el pod generador de carga usando el archivo incluido en el repositorio:
-
-PowerShell
-
+```powershell
 kubectl apply -f k8s/load-generator.yaml
+```
+#### 3. Resultado: En aproximadamente 60 segundos, verás en Argo CD o en la terminal cómo las réplicas suben progresivamente hasta llegar a 10 pods.
 
+#### 4. Detener prueba: Para detener el ataque, simplemente borra el pod:
 
-3. Resultado: En aproximadamente 60 segundos, verás en Argo CD o en la terminal cómo las réplicas suben progresivamente hasta llegar a 10 pods.
-
-4. Detener prueba: Para detener el ataque, simplemente borra el pod:
-
-PowerShell
-
+```powershell
 kubectl delete -f k8s/load-generator.yaml
+```
+---
 
-
-##💾 Acceso a Base de Datos y Persistencia
+###💾 Acceso a Base de Datos y Persistencia
 El proyecto incluye un volumen persistente (PVC). Los datos sobreviven a reinicios del clúster.
 
 Acceso GUI: http://localhost:8080 (Adminer).
