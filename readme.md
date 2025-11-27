@@ -21,12 +21,13 @@ El despliegue de infraestructura es exitoso, pero existen limitaciones funcional
     * **Problema:** No es posible crear usuarios desde el Frontend actualmente.✅ "solved"
     * **Diagnóstico:** Aunque hay conexión a la DB, la operación de escritura falla (posible desincronización de esquemas TypeORM o bloqueo de credenciales CORS).✅ "solved"
     * **Workaround:** Se pueden verificar conexiones creando tablas manualmente desde Adminer.✅ "solved" 
+
 ### POST https://localhost:3000/users net::ERR_SSL_PROTOCOL_ERROR
 
-El problema era una sola letra: la "s".
+#### El problema era una sola letra: la "s".
 
-Estás intentando conectar por HTTPS (Seguro), pero tu Backend en local (NestJS) está corriendo en HTTP (Normal). 
-Es como intentar saludar de mano a alguien que te está dando un abrazo; el protocolo no coincide y la conexión se rompe antes de empezar.
+#### Estás intentando conectar por HTTPS (Seguro), pero tu Backend en local (NestJS) está corriendo en HTTP (Normal). 
+#### Es como intentar saludar de mano a alguien que te está dando un abrazo; el protocolo no coincide y la conexión se rompe antes de empezar.
 ---
 
 ## ☀️ Ciclo de Vida Diario (Start / Stop)
