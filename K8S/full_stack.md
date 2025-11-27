@@ -7,7 +7,7 @@ A continuación, se explica cada componente paso a paso.
 
 ---
 
-## 1. Configuración y Secretos (La base)
+## 1. Configuración y Secretos (La base)  Por qué es importante: Permite cambiar la configuración de la base de datos en un solo lugar y que se propague al Backend y a la Base de Datos.
 
 Antes de levantar contenedores, definimos las variables de entorno que compartirán.
 
@@ -24,4 +24,12 @@ data:
   POSTGRES_USER: postgres    # Usuario por defecto
 
 ---
-  Por qué es importante: Permite cambiar la configuración de la base de datos en un solo lugar y que se propague al Backend y a la Base de Datos.
+### Secret (db-secret) Almacena datos confidenciales (contraseñas).
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-secret
+type: Opaque
+stringData:
+  POSTGRES_PASSWORD: "secret123!" # Contraseña real
