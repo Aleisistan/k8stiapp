@@ -115,7 +115,9 @@ Usuario: admin
 
 Contraseña: Ejecutar el siguiente comando para desencriptarla:
 
+```powershell
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | % { [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_)) }
+```
 
 ### 4. Configurar la Aplicación en Argo CD
 Ir a + NEW APP.
