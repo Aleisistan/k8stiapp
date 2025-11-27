@@ -151,11 +151,11 @@ kubectl apply -f k8s/load-generator.yaml
 kubectl delete -f k8s/load-generator.yaml
 ```
 ---
-#### Argo CD intenta mantener la sincronización con Git. Si borras el HPA en la interfaz, pero tienes activado el "Auto-Sync", ¡Argo CD lo volverá a crear en 2 segundos!
+### Argo CD intenta mantener la sincronización con Git. Si borras el HPA en la interfaz, pero tienes activado el "Auto-Sync", ¡Argo CD lo volverá a crear en 2 segundos!
 
 Aquí te explico cómo hacerlo correctamente para "pausar" el autoescalado y quedarte con 1 solo pod para depurar:
 
-Paso 1: Desactivar el Auto-Sync (Pausar el "piloto automático") ⏸️
+#### Paso 1: Desactivar el Auto-Sync (Pausar el "piloto automático") ⏸️
 Si no haces esto, Argo peleará contigo.
 
 Entra a tu aplicación en Argo CD.
@@ -166,7 +166,7 @@ En la sección SYNC POLICY, si dice "Enable Auto-Sync", dale al botón DISABLE (
 
 Ahora Argo CD dejará de corregir tus cambios manuales.
 
-Paso 2: Borrar el HPA desde la Interfaz 🗑️
+#### Paso 2: Borrar el HPA desde la Interfaz 🗑️
 En el mapa visual (Tree o Network), busca el cuadradito o hexágono que dice hpa backend-hpa.
 
 Haz clic sobre él.
@@ -177,7 +177,7 @@ Escribe el nombre para confirmar o dale OK.
 
 Ahora el "jefe" del autoescalado se ha ido.
 
-Paso 3: Bajar las réplicas manualmente 📉
+#### Paso 3: Bajar las réplicas manualmente 📉
 Ahora que no hay HPA ni Auto-Sync, tú mandas.
 
 Busca el recuadro del Deployment backend.
@@ -192,7 +192,7 @@ Dale a Save.
 
 ¡Listo! Verás en pantalla cómo los pods se ponen en rojo (terminating) y desaparecen hasta quedar solo 1.
 
-¿Cómo volver a la normalidad?
+#### ¿Cómo volver a la normalidad?
 Cuando termines de depurar:
 
 Ve a APP DETAILS y activa de nuevo el Auto-Sync.
@@ -204,7 +204,7 @@ Automáticamente creará el HPA y dejará todo como estaba.
 
 ---
 
-###💾 Acceso a Base de Datos y Persistencia
+### 💾 Acceso a Base de Datos y Persistencia
 El proyecto incluye un volumen persistente (PVC). Los datos sobreviven a reinicios del clúster.
 
 Acceso GUI: http://localhost:8080 (Adminer).
