@@ -226,10 +226,10 @@ Lo ejecutará eternamente: Argo CD tiene la misión de mantener el estado desead
 
 Escalado Permanente: Tu HPA mantendrá las 10 réplicas encendidas siempre, consumiendo toda la CPU de tu máquina innecesariamente.
 
-###❌ Lo que NO debes hacer
+### ❌ Lo que NO debes hacer
 No metas el load-generator.yaml dentro de la carpeta k8s/ si esa es la carpeta que vigila Argo CD.
 
-###✅ La Mejor Práctica (Cómo organizarlo)
+### ✅ La Mejor Práctica (Cómo organizarlo)
 Debes separar lo que es Infraestructura Real de lo que son Herramientas de Prueba.
 
 Mueve el archivo a una carpeta separada que Argo CD ignore.
