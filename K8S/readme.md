@@ -76,7 +76,7 @@ docker build -t mi-frontend:v1 .
 
 ---
 
-### 2. Configuración del Servidor de Métricas
+## 2. Configuración del Servidor de Métricas
 Docker Desktop no incluye métricas por defecto. Necesarias para que el Autoescalado (HPA) funcione. 
 
 # 1. Instalar componentes oficiales
@@ -88,7 +88,7 @@ kubectl patch -n kube-system deployment metrics-server --type=json -p "[{\"op\":
 
 ---
 
-### 3. Instalación de Argo CD (GitOps)
+## 3. Instalación de Argo CD (GitOps)
 Instalamos el controlador de Argo CD para que vigile nuestro repositorio.
 
 # Crear namespace e instalar
@@ -108,7 +108,7 @@ Contraseña: Ejecutar el siguiente comando para desencriptarla:
 
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | % { [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_)) }
 
-### 4. Configurar la Aplicación en Argo CD
+## 4. Configurar la Aplicación en Argo CD
 Ir a + NEW APP.
 
 Source: Poner la URL de este repositorio github y path k8s.
@@ -118,7 +118,7 @@ Destination: Cluster https://kubernetes.default.svc y namespace default.
 Sync Policy: Automatic (Self Heal + Prune).
 
 
-### 🔥 Pruebas de Estrés y Autoescalado (HPA)
+## 🔥 Pruebas de Estrés y Autoescalado (HPA)
 
 Para verificar que el sistema escala de 1 a 10 pods, incluimos un archivo de generación de carga.
 
@@ -143,7 +143,7 @@ PowerShell
 kubectl delete -f k8s/load-generator.yaml
 
 
-💾 Acceso a Base de Datos y Persistencia
+##💾 Acceso a Base de Datos y Persistencia
 El proyecto incluye un volumen persistente (PVC). Los datos sobreviven a reinicios del clúster.
 
 Acceso GUI: http://localhost:8080 (Adminer).
