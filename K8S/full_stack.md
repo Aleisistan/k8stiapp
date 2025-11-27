@@ -37,7 +37,7 @@ stringData:
 ---
 ## 2. Persistencia de Datos (El Disco Duro) Función: Crea un "disco virtual" independiente de los Pods. Si el Pod de Postgres muere o se reinicia, este disco NO se borra, garantizando que tus usuarios y datos sobrevivan.
 
-###🔹 PersistentVolumeClaim (postgres-pvc)
+### 🔹 PersistentVolumeClaim (postgres-pvc)
 Aquí solicitamos "espacio físico" en el disco al clúster.
 ```yaml
 kind: PersistentVolumeClaim
@@ -53,14 +53,14 @@ spec:
 ---
 
 ## 3. Capa de Datos (PostgreSQL)
-###🔹 Deployment (postgres)
+### 🔹 Deployment (postgres)
 Define cómo corre el motor de base de datos.
 
 Env: Inyecta las variables desde db-config y db-secret.
 
 VolumeMounts: Aquí ocurre la magia de la persistencia. Monta el PVC (postgres-storage) en la ruta interna /var/lib/postgresql/data.
 
-###🔹 Service (postgres-service) Función: Le da una IP estable a la base de datos. El Backend se conecta a postgres-service:5432.
+### 🔹 Service (postgres-service) Función: Le da una IP estable a la base de datos. El Backend se conecta a postgres-service:5432.
 Es el "Router" interno.
 ```yaml
 kind: Service
@@ -71,7 +71,7 @@ spec:
     - port: 5432
 ```
 ## 4. Backend API (NestJS)
-###🔹 Deployment (backend)
+### 🔹 Deployment (backend)
 Aquí corre tu lógica de negocio.
 
 Replicas: Está comentado (# replicas: 3) intencionalmente.
@@ -90,7 +90,7 @@ resources:
 ```
 Env: Mapea manualmente las variables del ConfigMap/Secret a las variables que espera NestJS.
 
-###🔹 Service (backend-service)
+### 🔹 Service (backend-service)
 Exposición externa.
 
 Type: LoadBalancer: En Docker Desktop, esto expone el puerto 3000 directamente en localhost.
@@ -100,21 +100,21 @@ Acceso: Puedes entrar desde tu navegador o Postman en http://localhost:3000.
 ---
 
 ## 5. Frontend (Angular/React)
-###🔹 Deployment (frontend)
+### 🔹 Deployment (frontend)
 Servidor web para la interfaz de usuario.
 
 Image: mi-frontend:v1 (Local).
 
 Port: 4200.
 
-###🔹 Service (frontend-service)
+### 🔹 Service (frontend-service)
 Type: LoadBalancer: Expone la web en http://localhost:4200.
 
 Flujo: Usuario -> localhost:4200 -> Service -> Pod Frontend.
 
 ---
 ## 6. Herramientas de Gestión (Adminer)
-###🔹 Deployment & Service (adminer)
+### 🔹 Deployment & Service (adminer)
 Una interfaz web ligera para gestionar la base de datos visualmente.
 
 Acceso: http://localhost:8080.
