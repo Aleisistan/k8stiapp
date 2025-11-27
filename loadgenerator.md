@@ -13,24 +13,26 @@ metadata:
   name: load-generator
 spec:
   # ...
-1. La Imagen (busybox)
-YAML
-
+```
+### 1. La Imagen (busybox)
+```yaml
     image: busybox
     imagePullPolicy: IfNotPresent
+```
 Qué es: Busybox es una imagen extremadamente ligera (menos de 5MB) que contiene las herramientas básicas de UNIX.
 
 Por qué se usa: No necesitamos un sistema operativo completo ni librerías pesadas. Solo necesitamos una terminal y el comando wget.
 
-2. El Script de Ataque (command & args)
+## 2. El Script de Ataque (command & args)
 Aquí reside la lógica de la prueba de estrés. Se ejecuta un script de Shell (/bin/sh) en bucle infinito.
 
-Bash
+```powershell
 
 while true; do
   wget -q -O- http://backend-service:3000 || true
   sleep 0.01
 done
+```
 while true; do ... done: Crea un bucle que nunca termina (hasta que borras el pod).
 
 wget -q -O- http://backend-service:3000:
@@ -49,27 +51,31 @@ Importancia: Cuando el servidor se sature, empezará a rechazar conexiones (Conn
 
 sleep 0.01: Hace una pausa de 10 milisegundos entre petición y petición. Genera aproximadamente 100 peticiones por segundo desde un solo pod.
 
-3. Política de Reinicio (restartPolicy)
-YAML
-
+## 3. Política de Reinicio (restartPolicy)
+```yaml
   restartPolicy: Never
+
+```
 Función: Le dice a Kubernetes: "Si este pod se detiene o falla, NO intentes revivirlo".
 
 Razón: Es un pod de prueba manual. Cuando terminamos el test y lo borramos, no queremos que el Clúster intente recrearlo.
 
-📖 Cómo usar este archivo
-1. Iniciar la prueba (Atacar): Al aplicar este archivo, el pod nace y comienza a disparar peticiones inmediatamente.
+## 📖 Cómo usar este archivo
+### 1. Iniciar la prueba (Atacar): Al aplicar este archivo, el pod nace y comienza a disparar peticiones inmediatamente.
 
-PowerShell
+```PowerShell
 
 kubectl apply -f k8s/load-generator.yaml
-2. Verificar el efecto: Observa cómo sube el uso de CPU en el HPA.
+```
+### 2. Verificar el efecto: Observa cómo sube el uso de CPU en el HPA.
 
-PowerShell
+```PowerShell
 
 kubectl get hpa -w
-3. Detener la prueba: Simplemente elimina el pod. El tráfico cesará al instante.
+```
+### 3. Detener la prueba: Simplemente elimina el pod. El tráfico cesará al instante.
 
-PowerShell
+```PowerShell
 
 kubectl delete -f k8s/load-generator.yaml
+```

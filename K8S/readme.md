@@ -9,7 +9,7 @@ Este repositorio contiene la configuración de infraestructura para desplegar un
 
 ---
 
-## ⚠️ Estado Actual del Proyecto (Known Issues)
+## ✅ Estado Actual del Proyecto (Known Issues)
 
 El despliegue de infraestructura es exitoso, pero existen limitaciones funcionales pendientes de resolución:
 
@@ -17,11 +17,16 @@ El despliegue de infraestructura es exitoso, pero existen limitaciones funcional
 * ✅ **Red Interna:** El Backend resuelve correctamente el DNS `postgres-service`.
 * ✅ **Persistencia:** La base de datos mantiene los datos tras reinicios (PVC Configurado).
 * ✅ **Autoescalado:** El HPA escala los pods correctamente bajo estrés.
-* ⚠️ **Funcionalidad de Registro:**
-    * **Problema:** No es posible crear usuarios desde el Frontend actualmente.
-    * **Diagnóstico:** Aunque hay conexión a la DB, la operación de escritura falla (posible desincronización de esquemas TypeORM o bloqueo de credenciales CORS).
-    * **Workaround:** Se pueden verificar conexiones creando tablas manualmente desde Adminer.
+* ⚠️ **Funcionalidad de Registro:** ✅ "solved"
+    * **Problema:** No es posible crear usuarios desde el Frontend actualmente.✅ "solved"
+    * **Diagnóstico:** Aunque hay conexión a la DB, la operación de escritura falla (posible desincronización de esquemas TypeORM o bloqueo de credenciales CORS).✅ "solved"
+    * **Workaround:** Se pueden verificar conexiones creando tablas manualmente desde Adminer.✅ "solved" 
+### POST https://localhost:3000/users net::ERR_SSL_PROTOCOL_ERROR
 
+El problema era una sola letra: la "s".
+
+Estás intentando conectar por HTTPS (Seguro), pero tu Backend en local (NestJS) está corriendo en HTTP (Normal). 
+Es como intentar saludar de mano a alguien que te está dando un abrazo; el protocolo no coincide y la conexión se rompe antes de empezar.
 ---
 
 ## ☀️ Ciclo de Vida Diario (Start / Stop)
@@ -151,6 +156,15 @@ kubectl apply -f k8s/load-generator.yaml
 kubectl delete -f k8s/load-generator.yaml
 ```
 ---
+## Error de KUBECTL al querer ver los logs del backend
+```powershell
+kubectl logs -l app=backend -f 
+error: you are attempting to follow 10 log streams, but maximum allowed concurrency is 5, use --max-log-requests to increase the limit
+```
+### 😂 El monstruo que creaste sigue vivo!
+Ese error aparece porque tu prueba de estrés funcionó demasiado bien. El Autoescalado (HPA) subió tu backend a 10 réplicas, y ahora kubectl te dice: "Oye, no puedo vigilar 10 canales de televisión al mismo tiempo, el límite es 5".
+Intentar depurar un error buscando en 10 logs diferentes es una locura. Vamos a volver a la calma (escalar a 1 solo pod) para que sea fácil encontrar el error.
+
 ### Argo CD intenta mantener la sincronización con Git. Si borras el HPA en la interfaz, pero tienes activado el "Auto-Sync", ¡Argo CD lo volverá a crear en 2 segundos!
 
 Aquí te explico cómo hacerlo correctamente para "pausar" el autoescalado y quedarte con 1 solo pod para depurar:
