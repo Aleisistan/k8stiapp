@@ -80,10 +80,14 @@ docker build -t mi-frontend:v1 .
 Docker Desktop no incluye métricas por defecto. Necesarias para que el Autoescalado (HPA) funcione. 
 
 #### 1. Instalar componentes oficiales
+
 ```powershell
 kubectl apply -f [https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml](https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml)
 
+```
+
 #### 2. Aplicar parche de seguridad para Docker Desktop (Permite certificados inseguros locales)
+```powershell
 kubectl patch -n kube-system deployment metrics-server --type=json -p "[{\"op\":\"add\",\"path\":\"/spec/template/spec/containers/0/args/-\",\"value\":\"--kubelet-insecure-tls\"}]"
 ```
 ---
@@ -91,11 +95,15 @@ kubectl patch -n kube-system deployment metrics-server --type=json -p "[{\"op\":
 ## 3. Instalación de Argo CD (GitOps)
 Instalamos el controlador de Argo CD para que vigile nuestro repositorio.
 
-# Crear namespace e instalar
+### Crear namespace e instalar
+
+```powershell
 kubectl create namespace argocd
 kubectl apply -n argocd -f [https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml](https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml)
+```
 
 #### Esperar a que los pods inicien y abrir túnel de acceso (Puerto 8081) el 8080 esta ocupado con adminer
+
 ```powershell
 kubectl port-forward svc/argocd-server -n argocd 8081:443
 ```
