@@ -161,7 +161,7 @@ kubectl delete -f k8s/load-generator.yaml
 kubectl logs -l app=backend -f 
 error: you are attempting to follow 10 log streams, but maximum allowed concurrency is 5, use --max-log-requests to increase the limit
 ```
-### El monstruo que creaste sigue vivo!
+### 😂 El monstruo que creaste sigue vivo!
 Ese error aparece porque tu prueba de estrés funcionó demasiado bien. El Autoescalado (HPA) subió tu backend a 10 réplicas, y ahora kubectl te dice: "Oye, no puedo vigilar 10 canales de televisión al mismo tiempo, el límite es 5".
 Intentar depurar un error buscando en 10 logs diferentes es una locura. Vamos a volver a la calma (escalar a 1 solo pod) para que sea fácil encontrar el error.
 
