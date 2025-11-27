@@ -20,11 +20,13 @@ import { UsersModule } from './users/users.module';
       type: 'postgres',
       host: process.env.DB_HOST || 'localhost',
       port: parseInt(process.env.DB_PORT ?? '5432', 10),
-      username: process.env.DB_USERNAME || 'postgres',
-      password: process.env.DB_PASSWORD || 'secret123!',
+      // --- CORRECCIÓN: Usar las variables estándar de Postgres ---
+      username: process.env.POSTGRES_USER || 'postgres',
+      password: process.env.POSTGRES_PASSWORD || 'secret123!',
       database:
-        process.env.DB_DATABASE ||
+         process.env.POSTGRES_DB ||
         (process.env.NODE_ENV === 'test' ? 'sticct_test' : 'sticct'),
+  // -----------------------------------------------------------
       ssl:
         process.env.TYPEORM_SSL === 'true'
           ? {
