@@ -9,4 +9,4 @@ spec:
     name: backend
   minReplicas: 1
   maxReplicas: 10
-  targetCPUUtilizationPercentage: 15
+  targetCPUUtilizationPercentage: 10
