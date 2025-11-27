@@ -192,7 +192,7 @@ Dale a Save.
 
 ¡Listo! Verás en pantalla cómo los pods se ponen en rojo (terminating) y desaparecen hasta quedar solo 1.
 
-¿Cómo volver a la normalidad?
+#### ¿Cómo volver a la normalidad?
 Cuando termines de depurar:
 
 Ve a APP DETAILS y activa de nuevo el Auto-Sync.
