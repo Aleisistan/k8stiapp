@@ -9,7 +9,7 @@ Este repositorio contiene la configuración de infraestructura para desplegar un
 
 ---
 
-## ⚠️ Estado Actual del Proyecto (Known Issues)
+## ✅ Estado Actual del Proyecto (Known Issues)
 
 El despliegue de infraestructura es exitoso, pero existen limitaciones funcionales pendientes de resolución:
 
@@ -17,11 +17,16 @@ El despliegue de infraestructura es exitoso, pero existen limitaciones funcional
 * ✅ **Red Interna:** El Backend resuelve correctamente el DNS `postgres-service`.
 * ✅ **Persistencia:** La base de datos mantiene los datos tras reinicios (PVC Configurado).
 * ✅ **Autoescalado:** El HPA escala los pods correctamente bajo estrés.
-* ⚠️ **Funcionalidad de Registro:**
-    * **Problema:** No es posible crear usuarios desde el Frontend actualmente.
-    * **Diagnóstico:** Aunque hay conexión a la DB, la operación de escritura falla (posible desincronización de esquemas TypeORM o bloqueo de credenciales CORS).
-    * **Workaround:** Se pueden verificar conexiones creando tablas manualmente desde Adminer.
+* ⚠️ **Funcionalidad de Registro:** ✅ "solved"
+    * **Problema:** No es posible crear usuarios desde el Frontend actualmente.✅ "solved"
+    * **Diagnóstico:** Aunque hay conexión a la DB, la operación de escritura falla (posible desincronización de esquemas TypeORM o bloqueo de credenciales CORS).✅ "solved"
+    * **Workaround:** Se pueden verificar conexiones creando tablas manualmente desde Adminer.✅ "solved" 
+### POST https://localhost:3000/users net::ERR_SSL_PROTOCOL_ERROR
 
+El problema era una sola letra: la "s".
+
+Estás intentando conectar por HTTPS (Seguro), pero tu Backend en local (NestJS) está corriendo en HTTP (Normal). 
+Es como intentar saludar de mano a alguien que te está dando un abrazo; el protocolo no coincide y la conexión se rompe antes de empezar.
 ---
 
 ## ☀️ Ciclo de Vida Diario (Start / Stop)
