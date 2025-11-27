@@ -217,6 +217,50 @@ Automáticamente creará el HPA y dejará todo como estaba.
 
 
 ---
+## ⚠️ Si el archivo load-generator.yaml está dentro de la carpeta k8s/ y haces git push, Argo CD lo interpretará como parte de tu aplicación oficial.
+
+### Argo CD detectará el archivo: Verá que hay un nuevo recurso llamado Pod/load-generator.
+Lo ejecutará eternamente: Argo CD tiene la misión de mantener el estado deseado. Si el generador se detiene, Argo CD podría intentar reiniciarlo (aunque tenga restartPolicy: Never, Argo verá que el pod "Completed" ensucia el estado y podría marcarlo como OutOfSync o tratar de recrearlo si cambias algo).
+
+### Ataque Infinito: Tu backend estará bajo ataque las 24 horas del día.
+
+Escalado Permanente: Tu HPA mantendrá las 10 réplicas encendidas siempre, consumiendo toda la CPU de tu máquina innecesariamente.
+
+###❌ Lo que NO debes hacer
+No metas el load-generator.yaml dentro de la carpeta k8s/ si esa es la carpeta que vigila Argo CD.
+
+###✅ La Mejor Práctica (Cómo organizarlo)
+Debes separar lo que es Infraestructura Real de lo que son Herramientas de Prueba.
+
+Mueve el archivo a una carpeta separada que Argo CD ignore.
+
+Tu estructura de carpetas recomendada:
+
+Plaintext
+mi-proyecto/
+│
+├── backend/
+├── frontend/
+│
+├── k8s/               <-- Argo CD vigila SOLO esta carpeta
+│   ├── full_stack.yaml
+│   ├── backend-hpa.yaml
+│   └── (AQUÍ NO PONGAS EL GENERADOR)
+│
+└── tests/             <-- Crea esta carpeta nueva
+    └── load-generator.yaml
+
+### Cuando tú quieras hacer la prueba manual, ejecutas el comando desde tu terminal apuntando a esa carpeta:
+
+```PowerShell
+# Solo cuando tú quieras atacar:
+kubectl apply -f tests/load-generator.yaml
+
+# Cuando quieras parar:
+kubectl delete -f tests/load-generator.yaml
+
+```
+Resumen: Argo CD es para lo que debe estar siempre vivo. Los tests de carga son temporales, así que ejecútalos a mano desde una carpeta aparte (tests/ o scripts/).
 
 ### 💾 Acceso a Base de Datos y Persistencia
 El proyecto incluye un volumen persistente (PVC). Los datos sobreviven a reinicios del clúster.
