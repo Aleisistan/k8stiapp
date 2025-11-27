@@ -73,7 +73,7 @@ docker build -t mi-backend:v1 .
 # Frontend
 cd ../frontend
 docker build -t mi-frontend:v1 .
-
+```
 ---
 
 ## 2. Configuración del Servidor de Métricas
