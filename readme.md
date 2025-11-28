@@ -134,7 +134,7 @@ Destination: Cluster https://kubernetes.default.svc y namespace default.
 
 Sync Policy: Automatic (Self Heal + Prune).
 
-### 5.La diferencia entre las vistas tree y network en Argo CD es la forma en que presentan la información de la aplicación: 
+### 5. La diferencia entre las vistas tree y network en Argo CD es la forma en que presentan la información de la aplicación: 
 
 #### Vista "tree" (árbol)
 Descripción: Muestra los recursos de la aplicación como un árbol genealógico, donde los elementos padres están en la parte superior y los elementos hijos se expanden debajo de ellos.
