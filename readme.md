@@ -137,11 +137,11 @@ Sync Policy: Automatic (Self Heal + Prune).
 ### 5. La diferencia entre las vistas tree y network en Argo CD es la forma en que presentan la información de la aplicación: 
 
 #### Vista "tree" (árbol)
-Descripción: Muestra los recursos de la aplicación como un árbol genealógico, donde los elementos padres están en la parte superior y los elementos hijos se expanden debajo de ellos.
+Muestra los recursos de la aplicación como un árbol genealógico, donde los elementos padres están en la parte superior y los elementos hijos se expanden debajo de ellos.
 Uso: Es útil para entender la estructura de los recursos de una aplicación y ver su estado de forma jerárquica. Es la vista predeterminada. 
 
 #### Vista "network" (red)
-Descripción: Presenta los recursos de la aplicación como nodos interconectados en una red. Las líneas entre los nodos muestran las relaciones y dependencias entre ellos.
+Presenta los recursos de la aplicación como nodos interconectados en una red. Las líneas entre los nodos muestran las relaciones y dependencias entre ellos.
 Uso: Es ideal para visualizar cómo se conectan y dependen unos de otros diferentes recursos, como por ejemplo, un servicio que accede a un conjunto de réplicas (pods).
 
 #### ¿Cómo elegir cuál usar?
