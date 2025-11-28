@@ -251,7 +251,7 @@ Mueve el archivo a una carpeta separada que Argo CD ignore.
 
 Tu estructura de carpetas recomendada:
 
-Plaintext
+```Plaintext
 mi-proyecto/
 │
 ├── backend/
@@ -264,6 +264,7 @@ mi-proyecto/
 │
 └── tests/             <-- Crea esta carpeta nueva
     └── load-generator.yaml
+```
 
 ### Cuando tú quieras hacer la prueba manual, ejecutas el comando desde tu terminal apuntando a esa carpeta:
 
